@@ -19,3 +19,14 @@ public class Main {
     ArrayList<Object> listanota = new ArrayList<>();
 
 }
+
+class Estudiante {
+
+    private String codigo;
+    private String nombre;
+    private String apellido;
+    private String programa;
+    private int semestre;
+    private int edad;
+
+}
