@@ -152,3 +152,11 @@ class asignatura{
 
     
 }
+
+class Nota{
+     private double Nota1;
+    private double Nota2;
+    private double Nota3;
+    private String periodo;
+    private double promedio;
+}
