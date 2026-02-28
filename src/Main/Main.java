@@ -215,5 +215,10 @@ class Nota{
     public void setPromedio(double promedio) {
         this.promedio = promedio;
     }
+
+    @Override
+    public String toString() {
+        return "Nota{" + "Nota1=" + Nota1 + ", Nota2=" + Nota2 + ", Nota3=" + Nota3 + ", periodo=" + periodo + ", promedio=" + promedio + '}';
+    }
     
 }
