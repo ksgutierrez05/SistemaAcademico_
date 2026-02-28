@@ -85,4 +85,14 @@ class Estudiante {
     public void setEdad(int edad) {
         this.edad = edad;
     }
+
+    @Override
+    public String toString() {
+        return "Codigo: " + codigo +
+               ", Nombre: " + nombre +
+               ", Apellido: " + apellido +
+               ", Programa: " + programa +
+               ", Semestre: " + semestre +
+               ", Edad: " + edad;
+    }
 }
