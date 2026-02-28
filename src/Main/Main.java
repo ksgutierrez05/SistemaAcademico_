@@ -48,6 +48,46 @@ public class Main {
             }
 
         } while (op != 4);
+        
 
     }
+    
+     public static void menuEstudiantes() {
+        int op;
+        
+        do {
+            op = Integer.parseInt(JOptionPane.showInputDialog(
+                    "====== GESTIÓN ESTUDIANTES ======\n"
+                    + "1. Registrar nuevo estudiante\n"
+                    + "2. Consultar lista de estudiantes\n"
+                    + "3. Buscar estudiante por codigo\n"
+                    + "4. Modificar datos de un estudiante\n"
+                    + "5. Eliminar estudiante\n"
+                    + "6. Volver a menú principal\n"
+                    + "Elija su opción..."));
+
+            switch (op) {
+                case 1:   //registrarEstudiante();
+                    break;
+                case 2:   //listarEstudiantes();
+                    break;
+                case 3:   //buscarEstudiante();
+                    break;
+                case 4:   //actualizarEstudiante();
+                    break;
+                case 5:   //eliminarEstudiante();
+                    break;
+                case 6:
+                    JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción fuera de rango...");
+            }
+
+        } while (op != 6);
+
+
+    }
+    
+    
 }
