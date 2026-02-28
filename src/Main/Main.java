@@ -34,11 +34,14 @@ public class Main {
                     + "Elija su opción..."));
 
             switch (op) {
-                case 1:    menuEstudiantes();
+                case 1:
+                    menuEstudiantes();
                     break;
-                case 2:    menuAsignaturas();
+                case 2:
+                    menuAsignaturas();
                     break;
-                case 3:    //menuNotas();
+                case 3:
+                    menuNotas();
                     break;
                 case 4:
                     JOptionPane.showMessageDialog(null, "Saliendo del programa...");
@@ -48,13 +51,12 @@ public class Main {
             }
 
         } while (op != 4);
-        
 
     }
-    
-     public static void menuEstudiantes() {
+
+    public static void menuEstudiantes() {
         int op;
-        
+
         do {
             op = Integer.parseInt(JOptionPane.showInputDialog(
                     "====== GESTIÓN ESTUDIANTES ======\n"
@@ -86,10 +88,9 @@ public class Main {
 
         } while (op != 6);
 
-
     }
-     
-     public static void menuAsignaturas() {
+
+    public static void menuAsignaturas() {
         int op;
 
         do {
@@ -125,6 +126,40 @@ public class Main {
 
     }
 
- 
-    
+    public static void menuNotas() {
+        int op;
+
+        do {
+            op = Integer.parseInt(JOptionPane.showInputDialog(
+                    "====== GESTIÓN NOTAS ======\n"
+                    + "1. Registrar nueva nota\n"
+                    + "2. Consultar lista de notas registradas\n"
+                    + "3. Buscar nota por codigo de estudiante\n"
+                    + "4. Modificar datos de una asignatura\n"
+                    + "5. Eliminar asignatura\n"
+                    + "6. Volver a menú principal\n"
+                    + "Elija su opción..."));
+
+            switch (op) {
+                case 1:   //registrarNotas();
+                    break;
+                case 2:   //listarNotas();
+                    break;
+                case 3:   //buscarNotas();
+                    break;
+                case 4:   //actualizarNotas();
+                    break;
+                case 5:   //eliminarNotas();
+                    break;
+                case 6:
+                    JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción fuera de rango...");
+            }
+
+        } while (op != 6);
+
+    }
+
 }
