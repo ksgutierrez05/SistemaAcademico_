@@ -34,9 +34,9 @@ public class Main {
                     + "Elija su opción..."));
 
             switch (op) {
-                case 1:    //menuEstudiantes();
+                case 1:    menuEstudiantes();
                     break;
-                case 2:    //menuAsignaturas();
+                case 2:    menuAsignaturas();
                     break;
                 case 3:    //menuNotas();
                     break;
@@ -88,6 +88,43 @@ public class Main {
 
 
     }
-    
+     
+     public static void menuAsignaturas() {
+        int op;
+
+        do {
+            op = Integer.parseInt(JOptionPane.showInputDialog(
+                    "====== GESTIÓN ASIGNATURAS ======\n"
+                    + "1. Registrar nueva asignaturas\n"
+                    + "2. Consultar lista de asignaturas registradas\n"
+                    + "3. Buscar asignatura por codigo\n"
+                    + "4. Modificar datos de una asignatura\n"
+                    + "5. Eliminar asignatura\n"
+                    + "6. Volver a menú principal\n"
+                    + "Elija su opción..."));
+
+            switch (op) {
+                case 1:   //registrarAsignatura();
+                    break;
+                case 2:   //listarAsignaturas();
+                    break;
+                case 3:   //buscarAsignatura();
+                    break;
+                case 4:   //actualizarAsignatura();
+                    break;
+                case 5:   //eliminarAsignatura();
+                    break;
+                case 6:
+                    JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción fuera de rango...");
+            }
+
+        } while (op != 6);
+
+    }
+
+ 
     
 }
