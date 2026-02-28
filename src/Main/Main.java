@@ -96,3 +96,11 @@ class Estudiante {
                ", Edad: " + edad;
     }
 }
+class asignatura{
+    private String codigo;
+    private String nombre;
+    private int creditos;
+    private String docente;
+
+    
+}
