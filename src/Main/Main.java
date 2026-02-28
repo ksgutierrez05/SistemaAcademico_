@@ -16,7 +16,7 @@ public class Main {
 
     ArrayList<Object> listaest = new ArrayList<>();
     ArrayList<Object> listaasig = new ArrayList<>();
-    ArrayList<Object> listanota = new ArrayList<>();
+    ArrayList<Nota> listanota = new ArrayList<>();
 
 }
 
@@ -154,6 +154,8 @@ class asignatura{
 }
 
 class Nota{
+    private Estudiante estudiante;
+    private asignatura Asignatura;
      private double Nota1;
     private double Nota2;
     private double Nota3;
@@ -168,7 +170,9 @@ class Nota{
     public Nota() {
     }
 
-    public Nota(double Nota1, double Nota2, double Nota3, String periodo, double promedio) {
+    public Nota(Estudiante estudiante, asignatura Asignatura, double Nota1, double Nota2, double Nota3, String periodo, double promedio) {
+        this.estudiante = estudiante;
+        this.Asignatura = Asignatura;
         this.Nota1 = Nota1;
         this.Nota2 = Nota2;
         this.Nota3 = Nota3;
@@ -176,6 +180,22 @@ class Nota{
         this.promedio = promedio;
     }
 
+    public asignatura getAsignatura() {
+        return Asignatura;
+    }
+
+    public void setAsignatura(asignatura Asignatura) {
+        this.Asignatura = Asignatura;
+    }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
+    }
+   
     public double getNota1() {
         return Nota1;
     }
@@ -218,7 +238,16 @@ class Nota{
 
     @Override
     public String toString() {
-        return "Nota{" + "Nota1=" + Nota1 + ", Nota2=" + Nota2 + ", Nota3=" + Nota3 + ", periodo=" + periodo + ", promedio=" + promedio + '}';
+        return "Nota{" + "estudiante=" + estudiante +
+              ", Asignatura=" + Asignatura + 
+                ", Nota1=" + Nota1 + 
+                ", Nota2=" + Nota2 + 
+                ", Nota3=" + Nota3 +
+                ", periodo=" + periodo + 
+                ", promedio=" + promedio + '}';
     }
+
+   
     
+   
 }
