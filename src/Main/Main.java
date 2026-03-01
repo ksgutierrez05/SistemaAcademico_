@@ -19,7 +19,7 @@ public class Main {
 
     //OPCIONES DE MENU NOTA
     //regsitrar nota
-    public void registrarnota() {
+    public void registrarNota() {
         int seleccion;
         if (listaest.isEmpty()) {
             JOptionPane.showMessageDialog(null,
@@ -143,7 +143,7 @@ public class Main {
 
     }
 
-    public void BuscarNota() {
+    public void buscarNota() {
         if (listanota.isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "No hay notas registradas.");
@@ -176,7 +176,7 @@ public class Main {
     }
 //actualizarnotas
 
-    public void ActualizarNota() {
+    public void actualizarNota() {
         if (listanota.isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "No hay notas registradas.");
@@ -239,7 +239,7 @@ public class Main {
     }
 //eliminar notas
 
-    public void EliminarNota() {
+    public void eliminarNota() {
         if (listanota.isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "No hay notas registradas.");
