@@ -17,9 +17,10 @@ public class Main {
     ArrayList<Object> listaasig = new ArrayList<>();
     ArrayList<Object> listanota = new ArrayList<>();
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
 
-        mostrarMenu();
+       Main obj = new Main();
+        obj.mostrarMenu();
     }
 
     private void mostrarMenu() {
@@ -39,10 +40,10 @@ public class Main {
                     menuEstudiantes();
                     break;
                 case 2:
-                    menuAsignaturas();
+                    //menuAsignaturas();
                     break;
                 case 3:
-                    menuNotas();
+                    //menuNotas();
                     break;
                 case 4:
                     JOptionPane.showMessageDialog(null, "Saliendo del programa...");
@@ -164,6 +165,13 @@ public class Main {
     }
 
     public void listarEstudiantes() {
+       
+        if (listaest.isEmpty()) {  
+        JOptionPane.showMessageDialog(null,
+                "No hay estudiantes registrados");
+        return; 
+    }
+        
         StringBuilder lista = new StringBuilder();
 
         lista.append("LISTA DE ESTUDIANTES:");
