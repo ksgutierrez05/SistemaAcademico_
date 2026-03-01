@@ -18,6 +18,10 @@ public class Main {
     ArrayList<Object> listaasig = new ArrayList<>();
     ArrayList<Object> listanota = new ArrayList<>();
 
+    
+  
+    
+    
    public void registrarAsignatura() {
 
     String codigo, nombre, docente, inputCreditos;
@@ -85,7 +89,44 @@ public class Main {
     } while (seleccion == JOptionPane.YES_OPTION);
 }
 
+public void listarAsignaturas() {
 
+  
+    StringBuilder texto = new StringBuilder();
+
+        for (Asignatura e : listaAsig) {
+            texto.append("Codigo: ").append(e.getCodigo())
+         .append("\nNombre: ").append(e.getNombre())
+         .append("\nCreditos: ").append(e.getCreditos())
+         .append("\nDocente: ").append(e.getDocente())
+         .append("\n--------------------\n");
+}
+
+JOptionPane.showMessageDialog(null, texto.toString());
+}
+public void buscarAsignatura() {
+
+    String codigoBuscar;
+
+    codigoBuscar = JOptionPane.showInputDialog("Ingrese el codigo de la asignatura:");
+
+    for (asignatura e : listaasig) {
+
+        if (e.getCodigo().equalsIgnoreCase(codigoBuscar)) {
+
+            JOptionPane.showMessageDialog(null,
+                    "Codigo: " + e.getCodigo() +
+                    "\nNombre: " + e.getNombre() +
+                    "\nCreditos: " + e.getCreditos() +
+                    "\nDocente: " + e.getDocente());
+
+            return;
+        }
+    }
+
+    JOptionPane.showMessageDialog(null,
+            "No existe una asignatura con ese codigo");
+}
 }
 
 class Estudiante {
