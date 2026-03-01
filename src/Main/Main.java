@@ -14,9 +14,51 @@ import javax.swing.JOptionPane;
  */
 public class Main {
 
-    ArrayList<Object> listaest = new ArrayList<>();
-    ArrayList<Object> listaasig = new ArrayList<>();
+    ArrayList<Estudiante> listaest = new ArrayList<>();
+    ArrayList<asignatura> listaasig = new ArrayList<>();
     ArrayList<Nota> listanota = new ArrayList<>();
+    
+        public void registrarnota() {
+        String codEst = JOptionPane.showInputDialog("Ingrese código del estudiante:");
+        String codAsig = JOptionPane.showInputDialog("Ingrese código de la asignatura:");
+        String periodo=JOptionPane.showInputDialog("ingrese el periodo");
+        double Nota1 = Double.parseDouble(JOptionPane.showInputDialog("ingrese nota 1"));
+       double  Nota2 = Double.parseDouble(JOptionPane.showInputDialog("ingrese nota 2"));
+       double  Nota3 = Double.parseDouble(JOptionPane.showInputDialog("ingrese nota 3"));
+        
+        Estudiante estudianteEncontrado= null;
+        for (Estudiante e :listaest ) {
+            if(e.getCodigo().equals(codEst)){
+                estudianteEncontrado=e;
+                break;
+            }
+           
+            
+        }
+        asignatura asignaturaencon=null;
+            for (asignatura a: listaasig) {
+                if (a.getCodigo().equals(codAsig)){
+                    asignaturaencon=a;
+                    
+                }
+                
+            }
+            if (estudianteEncontrado == null || asignaturaencon == null) {
+            JOptionPane.showMessageDialog(null, "Estudiante o asignatura no encontrados");
+            return;
+        }
+        Nota nueva = new Nota();
+        nueva.setEstudiante(estudianteEncontrado);
+        nueva.setAsignatura(asignaturaencon);
+        nueva.setNota1(Nota1);
+        nueva.setNota2(Nota2);
+        nueva.setNota3(Nota3);
+        nueva.setPeriodo(periodo);
+        nueva.calcularpromedio();
+
+        listanota.add(nueva);
+
+        JOptionPane.showMessageDialog(null, "Nota registrada correctamente");
 
 }
 
@@ -245,6 +287,10 @@ class Nota{
                 ", Nota3=" + Nota3 +
                 ", periodo=" + periodo + 
                 ", promedio=" + promedio + '}';
+    }
+
+       
+
     }
 
    
