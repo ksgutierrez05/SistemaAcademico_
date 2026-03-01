@@ -44,16 +44,16 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "El código no puede estar vacío.");
                 return;
             }
-            String periodo = JOptionPane.showInputDialog("ingrese el periodo");
+            String periodo = JOptionPane.showInputDialog("Ingrese el periodo");
             if (periodo == null || periodo.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "El periodo no puede estar vacío.");
                 return;
             }
             double Nota1, Nota2, Nota3;
             try {
-                Nota1 = Double.parseDouble(JOptionPane.showInputDialog("ingrese nota 1"));
-                Nota2 = Double.parseDouble(JOptionPane.showInputDialog("ingrese nota 2"));
-                Nota3 = Double.parseDouble(JOptionPane.showInputDialog("ingrese nota 3"));
+                Nota1 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese nota 1"));
+                Nota2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese nota 2"));
+                Nota3 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese nota 3"));
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null,
                         "Debe ingresar valores numéricos válidos.");
@@ -168,7 +168,7 @@ public class Main {
             }
             if (!encontrado) {
                 JOptionPane.showMessageDialog(null,
-                        "notas  no encontrada");
+                        "Notas  no encontrada");
             }
 
         }
