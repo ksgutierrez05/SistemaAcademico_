@@ -195,7 +195,56 @@ public void actualizarAsignatura() {
 
     } while (seleccion == JOptionPane.YES_OPTION);
 }
+     public void eliminarAsignatura() {
 
+    String codigoEliminar;
+    int seleccion;
+
+    do {
+
+        codigoEliminar = JOptionPane.showInputDialog("Ingrese el codigo de la asignatura a eliminar:");
+
+        for (asignatura e : listaasig) {
+
+            if (e.getCodigo().equalsIgnoreCase(codigoEliminar)) {
+
+                seleccion = JOptionPane.showConfirmDialog(null,
+                        "¿Esta seguro que desea eliminar la asignatura?\n"
+                        + "Codigo: " + e.getCodigo()
+                        + "\nNombre: " + e.getNombre()
+                        + "\nCreditos: " + e.getCreditos()
+                        + "\nDocente: " + e.getDocente(),
+                        "CONFIRMAR",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (seleccion == JOptionPane.YES_OPTION) {
+                    listaasig.remove(e);
+                    JOptionPane.showMessageDialog(null, "Asignatura eliminada");
+                }
+
+                seleccion = JOptionPane.showConfirmDialog(null,
+                        "¿DESEA SEGUIR ELIMINANDO?",
+                        "CONFIRMAR",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (seleccion == JOptionPane.YES_OPTION) {
+                    eliminarAsignatura();
+                }
+
+                return;
+            }
+        }
+
+        JOptionPane.showMessageDialog(null,
+                "No existe una asignatura con ese codigo");
+
+        seleccion = JOptionPane.showConfirmDialog(null,
+                "¿DESEA SEGUIR ELIMINANDO?",
+                "CONFIRMAR",
+                JOptionPane.YES_NO_OPTION);
+
+    } while (seleccion == JOptionPane.YES_OPTION);
+}
 
 }
 
