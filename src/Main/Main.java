@@ -40,10 +40,10 @@ public class Main {
                     menuEstudiantes();
                     break;
                 case 2:
-                    //menuAsignaturas();
+                    menuAsignaturas();
                     break;
                 case 3:
-                    //menuNotas();
+                    menuNotas();
                     break;
                 case 4:
                     JOptionPane.showMessageDialog(null, "Saliendo del programa...");
@@ -312,15 +312,15 @@ public class Main {
                     + "Elija su opción..."));
 
             switch (op) {
-                case 1:   //registrarAsignatura();
+                case 1:   registrarAsignatura();
                     break;
-                case 2:   //listarAsignaturas();
+                case 2:   listarAsignaturas();
                     break;
-                case 3:   //buscarAsignatura();
+                case 3:   buscarAsignatura();
                     break;
-                case 4:   //actualizarAsignatura();
+                case 4:   actualizarAsignatura();
                     break;
-                case 5:   //eliminarAsignatura();
+                case 5:   eliminarAsignatura();
                     break;
                 case 6:
                     JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
@@ -348,15 +348,15 @@ public class Main {
                     + "Elija su opción..."));
 
             switch (op) {
-                case 1:   //registrarNotas();
+                case 1:   registrarNota();
                     break;
-                case 2:   //listarNotas();
+                case 2:   listarNota();
                     break;
-                case 3:   //buscarNotas();
+                case 3:   buscarNota();
                     break;
-                case 4:   //actualizarNotas();
+                case 4:   actualizarNota();
                     break;
-                case 5:   //eliminarNotas();
+                case 5:   eliminarNota();
                     break;
                 case 6:
                     JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
