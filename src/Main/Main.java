@@ -83,7 +83,7 @@ public class Main {
                     actualizarEstudiante();
                     break;
                 case 5:
-                    //eliminarEstudiante();
+                    eliminarEstudiante();
                     break;
                 case 6:
                     JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
@@ -256,7 +256,37 @@ public class Main {
 
         JOptionPane.showMessageDialog(null, "Estudiante no encontrado");
     }
+    
+    public void eliminarEstudiante() {
+        String cod = JOptionPane.showInputDialog("Ingrese el código del estudiante a eliminar:");
 
+        boolean encontrado = false;
+
+        for (Estudiante estu : listaest) {
+
+            if (estu.getCodigo().equalsIgnoreCase(cod)) {
+
+                int confirmacion = JOptionPane.showConfirmDialog(
+                        null,
+                        "¿Esta seguro que desea eliminar este estudiante?\n" + estu.toString(),
+                        "Confirmar eliminación",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    listaest.remove(estu);
+                    JOptionPane.showMessageDialog(null, "Estudiante eliminado");
+                }
+
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(null, "Estudiante no encontrado");
+        }
+    }
     
      
      public void menuAsignaturas() {
