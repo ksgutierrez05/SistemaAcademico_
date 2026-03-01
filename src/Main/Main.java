@@ -80,7 +80,7 @@ public class Main {
                     buscarEstudiante();
                     break;
                 case 4:
-                    //actualizarEstudiante();
+                    actualizarEstudiante();
                     break;
                 case 5:
                     //eliminarEstudiante();
@@ -195,6 +195,68 @@ public class Main {
         }
 
     }
+    
+    public void actualizarEstudiante() {
+
+        String cod,nom,ape,prog;
+
+        cod = JOptionPane.showInputDialog("Ingrese el código del estudiante a modificar: ");
+
+        for (Estudiante estu : listaest) {
+
+            if (estu.getCodigo().equalsIgnoreCase(cod)) {
+
+                JOptionPane.showMessageDialog(null,
+                        "Estudiante encontrado:\n" + estu.toString());
+                try {
+                do {
+                nom = JOptionPane.showInputDialog("Nombre:");
+                ape = JOptionPane.showInputDialog("Apellido:");
+                prog = JOptionPane.showInputDialog("Programa:");
+                 if (cod == null || cod.trim().isEmpty()
+                            || nom == null || nom.trim().isEmpty()
+                            || ape == null || ape.trim().isEmpty()
+                            || prog == null || prog.trim().isEmpty()) {
+
+                        JOptionPane.showMessageDialog(null,
+                                "Todos los campos son obligatorios");
+
+                    }
+                } while (cod == null || cod.trim().isEmpty()
+                        || nom == null || nom.trim().isEmpty()
+                        || ape == null || ape.trim().isEmpty()
+                        || prog == null || prog.trim().isEmpty());
+
+                int sem = Integer.parseInt(
+                        JOptionPane.showInputDialog("Semestre:")
+                );
+
+                int edad = Integer.parseInt(
+                        JOptionPane.showInputDialog("Edad:")
+                );
+
+                estu.setNombre(nom);
+                estu.setApellido(ape);
+                estu.setPrograma(prog);
+                estu.setSemestre(sem);
+                estu.setEdad(edad);
+
+                JOptionPane.showMessageDialog(null, "Estudiante actualizado");
+                            } catch (NumberFormatException e) {
+
+                JOptionPane.showMessageDialog(null,
+                        "Error: Debe ingresar valores numéricos válidos en semestre o edad",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+                return;
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, "Estudiante no encontrado");
+    }
+
     
      
      public void menuAsignaturas() {
