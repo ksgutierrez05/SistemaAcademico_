@@ -74,10 +74,10 @@ public class Main {
                     registrarEstudiante();
                     break;
                 case 2:
-                    //listarEstudiantes();
+                    listarEstudiantes();
                     break;
                 case 3:
-                    //buscarEstudiante();
+                    buscarEstudiante();
                     break;
                 case 4:
                     //actualizarEstudiante();
@@ -100,14 +100,28 @@ public class Main {
     public void registrarEstudiante() {
         String cod, ape, nom, prog;
         int seleccion, sem, edad;
-        do {
-            try {
-                do {
 
-                    cod = JOptionPane.showInputDialog("Ingrese el código del estudiante: ");
-                    nom = JOptionPane.showInputDialog("Ingrese el nombre: ");
-                    ape = JOptionPane.showInputDialog("Ingrese el apellido: ");
-                    prog = JOptionPane.showInputDialog("Ingrese el programa: ");
+        do {
+
+            try {
+                cod = JOptionPane.showInputDialog("Ingrese el código del estudiante:");
+                boolean encontrado = false;
+
+                for (Estudiante e : listaest) {
+                    if (e.getCodigo().equalsIgnoreCase(cod)) {
+                        encontrado = true;
+                        break;
+                    }
+                }
+
+                if (encontrado) {
+                    JOptionPane.showMessageDialog(null,
+                            "El código ya está registrado");
+                } else {
+
+                    nom = JOptionPane.showInputDialog("Ingrese el nombre:");
+                    ape = JOptionPane.showInputDialog("Ingrese el apellido:");
+                    prog = JOptionPane.showInputDialog("Ingrese el programa:");
 
                     if (cod == null || cod.trim().isEmpty()
                             || nom == null || nom.trim().isEmpty()
@@ -117,35 +131,73 @@ public class Main {
                         JOptionPane.showMessageDialog(null,
                                 "Todos los campos son obligatorios");
 
-                    }
-                } while (cod == null || cod.trim().isEmpty()
-                        || nom == null || nom.trim().isEmpty()
-                        || ape == null || ape.trim().isEmpty()
-                        || prog == null || prog.trim().isEmpty());
+                    } else {
 
-                sem = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el semestre cursado: "));
-                edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad actual: "));
-                Estudiante estu = new Estudiante(cod, nom, ape, prog, sem, edad);
-                listaest.add(estu);
-                JOptionPane.showMessageDialog(null, "Estudiante agregado");
+                        sem = Integer.parseInt(
+                                JOptionPane.showInputDialog("Ingrese el semestre:")
+                        );
+
+                        edad = Integer.parseInt(
+                                JOptionPane.showInputDialog("Ingrese la edad:")
+                        );
+
+                        Estudiante estu = new Estudiante(cod, nom, ape, prog, sem, edad);
+                        listaest.add(estu);
+
+                        JOptionPane.showMessageDialog(null,
+                                "Estudiante agregado correctamente");
+                    }
+                }
+
             } catch (NumberFormatException e) {
 
                 JOptionPane.showMessageDialog(null,
-                        "Error: Debe ingresar valores numéricos válidos en semestre o edad",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                        "Debe ingresar valores numéricos válidos");
             }
 
             seleccion = JOptionPane.showConfirmDialog(null,
                     "¿Desea seguir agregando?",
-                    "Confirmacion",
+                    "Confirmación",
                     JOptionPane.YES_NO_OPTION);
 
         } while (seleccion == JOptionPane.YES_OPTION);
     }
 
+    public void listarEstudiantes() {
+        StringBuilder lista = new StringBuilder();
 
-    public void menuAsignaturas() {
+        lista.append("LISTA DE ESTUDIANTES:");
+
+        for (Estudiante estu : listaest) {
+            lista.append("\n" + estu.toString());
+            lista.append("\n");
+        }
+
+        JOptionPane.showMessageDialog(null, lista.toString());
+    }
+
+    public void buscarEstudiante() {
+        String cod;
+        boolean encontrado = false;
+        cod = JOptionPane.showInputDialog("Ingrese el código del estudiante: ");
+        for (Estudiante estu : listaest) {
+            if (estu.getCodigo().equalsIgnoreCase(cod)) {
+
+                JOptionPane.showMessageDialog(null,
+                        "Estudiante encontrado:\n" + estu.toString());
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(null,
+                    "Estudiante no encontrado");
+        }
+
+    }
+    
+     
+     public void menuAsignaturas() {
         int op;
 
         do {
