@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 public class Main {
 
     ArrayList<Estudiante> listaest = new ArrayList<>();
+<<<<<<< HEAD
     ArrayList<asignatura> listaasig = new ArrayList<>();
     ArrayList<Nota> listanota = new ArrayList<>();
 
@@ -515,6 +516,362 @@ public void actualizarAsignatura() {
 
     } while (seleccion == JOptionPane.YES_OPTION);
 }
+=======
+    ArrayList<Object> listaasig = new ArrayList<>();
+    ArrayList<Object> listanota = new ArrayList<>();
+>>>>>>> feature/menu-principal
+
+    public static void main(String[] args) {
+
+       Main obj = new Main();
+        obj.mostrarMenu();
+    }
+
+    private void mostrarMenu() {
+        int op;
+
+        do {
+            op = Integer.parseInt(JOptionPane.showInputDialog(
+                    "====== SISTEMA ACADÉMICO ======\n"
+                    + "1. Gestión Estudiantes\n"
+                    + "2. Gestión Asignaturas\n"
+                    + "3. Gestión Notas\n"
+                    + "4. Salir\n"
+                    + "Elija su opción..."));
+
+            switch (op) {
+                case 1:
+                    menuEstudiantes();
+                    break;
+                case 2:
+                    menuAsignaturas();
+                    break;
+                case 3:
+                    menuNotas();
+                    break;
+                case 4:
+                    JOptionPane.showMessageDialog(null, "Saliendo del programa...");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción fuera de rango...");
+            }
+
+        } while (op != 4);
+
+    }
+
+    public void menuEstudiantes() {
+        int op;
+
+        do {
+            op = Integer.parseInt(JOptionPane.showInputDialog(
+                    "====== GESTIÓN ESTUDIANTES ======\n"
+                    + "1. Registrar nuevo estudiante\n"
+                    + "2. Consultar lista de estudiantes\n"
+                    + "3. Buscar estudiante por codigo\n"
+                    + "4. Modificar datos de un estudiante\n"
+                    + "5. Eliminar estudiante\n"
+                    + "6. Volver a menú principal\n"
+                    + "Elija su opción..."));
+
+            switch (op) {
+                case 1:
+                    registrarEstudiante();
+                    break;
+                case 2:
+                    listarEstudiantes();
+                    break;
+                case 3:
+                    buscarEstudiante();
+                    break;
+                case 4:
+                    actualizarEstudiante();
+                    break;
+                case 5:
+                    eliminarEstudiante();
+                    break;
+                case 6:
+                    JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción fuera de rango...");
+            }
+
+        } while (op != 6);
+
+    }
+
+    //OPCIONES DE MENU ESTUDIANTE
+    public void registrarEstudiante() {
+        String cod, ape, nom, prog;
+        int seleccion, sem, edad;
+
+        do {
+
+            try {
+                cod = JOptionPane.showInputDialog("Ingrese el código del estudiante:");
+                boolean encontrado = false;
+
+                for (Estudiante e : listaest) {
+                    if (e.getCodigo().equalsIgnoreCase(cod)) {
+                        encontrado = true;
+                        break;
+                    }
+                }
+
+                if (encontrado) {
+                    JOptionPane.showMessageDialog(null,
+                            "El código ya está registrado");
+                } else {
+
+                    nom = JOptionPane.showInputDialog("Ingrese el nombre:");
+                    ape = JOptionPane.showInputDialog("Ingrese el apellido:");
+                    prog = JOptionPane.showInputDialog("Ingrese el programa:");
+
+                    if (cod == null || cod.trim().isEmpty()
+                            || nom == null || nom.trim().isEmpty()
+                            || ape == null || ape.trim().isEmpty()
+                            || prog == null || prog.trim().isEmpty()) {
+
+                        JOptionPane.showMessageDialog(null,
+                                "Todos los campos son obligatorios");
+
+                    } else {
+
+                        sem = Integer.parseInt(
+                                JOptionPane.showInputDialog("Ingrese el semestre:")
+                        );
+
+                        edad = Integer.parseInt(
+                                JOptionPane.showInputDialog("Ingrese la edad:")
+                        );
+
+                        Estudiante estu = new Estudiante(cod, nom, ape, prog, sem, edad);
+                        listaest.add(estu);
+
+                        JOptionPane.showMessageDialog(null,
+                                "Estudiante agregado correctamente");
+                    }
+                }
+
+            } catch (NumberFormatException e) {
+
+                JOptionPane.showMessageDialog(null,
+                        "Debe ingresar valores numéricos válidos");
+            }
+
+            seleccion = JOptionPane.showConfirmDialog(null,
+                    "¿Desea seguir agregando?",
+                    "Confirmación",
+                    JOptionPane.YES_NO_OPTION);
+
+        } while (seleccion == JOptionPane.YES_OPTION);
+    }
+
+    public void listarEstudiantes() {
+       
+        if (listaest.isEmpty()) {  
+        JOptionPane.showMessageDialog(null,
+                "No hay estudiantes registrados");
+        return; 
+    }
+        
+        StringBuilder lista = new StringBuilder();
+
+        lista.append("LISTA DE ESTUDIANTES:");
+
+        for (Estudiante estu : listaest) {
+            lista.append("\n" + estu.toString());
+            lista.append("\n");
+        }
+
+        JOptionPane.showMessageDialog(null, lista.toString());
+    }
+
+    public void buscarEstudiante() {
+        String cod;
+        boolean encontrado = false;
+        cod = JOptionPane.showInputDialog("Ingrese el código del estudiante: ");
+        for (Estudiante estu : listaest) {
+            if (estu.getCodigo().equalsIgnoreCase(cod)) {
+
+                JOptionPane.showMessageDialog(null,
+                        "Estudiante encontrado:\n" + estu.toString());
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(null,
+                    "Estudiante no encontrado");
+        }
+
+    }
+    
+    public void actualizarEstudiante() {
+
+        String cod,nom,ape,prog;
+
+        cod = JOptionPane.showInputDialog("Ingrese el código del estudiante a modificar: ");
+
+        for (Estudiante estu : listaest) {
+
+            if (estu.getCodigo().equalsIgnoreCase(cod)) {
+
+                JOptionPane.showMessageDialog(null,
+                        "Estudiante encontrado:\n" + estu.toString());
+                try {
+                do {
+                nom = JOptionPane.showInputDialog("Nombre:");
+                ape = JOptionPane.showInputDialog("Apellido:");
+                prog = JOptionPane.showInputDialog("Programa:");
+                 if (cod == null || cod.trim().isEmpty()
+                            || nom == null || nom.trim().isEmpty()
+                            || ape == null || ape.trim().isEmpty()
+                            || prog == null || prog.trim().isEmpty()) {
+
+                        JOptionPane.showMessageDialog(null,
+                                "Todos los campos son obligatorios");
+
+                    }
+                } while (cod == null || cod.trim().isEmpty()
+                        || nom == null || nom.trim().isEmpty()
+                        || ape == null || ape.trim().isEmpty()
+                        || prog == null || prog.trim().isEmpty());
+
+                int sem = Integer.parseInt(
+                        JOptionPane.showInputDialog("Semestre:")
+                );
+
+                int edad = Integer.parseInt(
+                        JOptionPane.showInputDialog("Edad:")
+                );
+
+                estu.setNombre(nom);
+                estu.setApellido(ape);
+                estu.setPrograma(prog);
+                estu.setSemestre(sem);
+                estu.setEdad(edad);
+
+                JOptionPane.showMessageDialog(null, "Estudiante actualizado");
+                            } catch (NumberFormatException e) {
+
+                JOptionPane.showMessageDialog(null,
+                        "Error: Debe ingresar valores numéricos válidos en semestre o edad",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+                return;
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, "Estudiante no encontrado");
+    }
+    
+    public void eliminarEstudiante() {
+        String cod = JOptionPane.showInputDialog("Ingrese el código del estudiante a eliminar:");
+
+        boolean encontrado = false;
+
+        for (Estudiante estu : listaest) {
+
+            if (estu.getCodigo().equalsIgnoreCase(cod)) {
+
+                int confirmacion = JOptionPane.showConfirmDialog(
+                        null,
+                        "¿Esta seguro que desea eliminar este estudiante?\n" + estu.toString(),
+                        "Confirmar eliminación",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    listaest.remove(estu);
+                    JOptionPane.showMessageDialog(null, "Estudiante eliminado");
+                }
+
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(null, "Estudiante no encontrado");
+        }
+    }
+    
+     
+     public void menuAsignaturas() {
+        int op;
+
+        do {
+            op = Integer.parseInt(JOptionPane.showInputDialog(
+                    "====== GESTIÓN ASIGNATURAS ======\n"
+                    + "1. Registrar nueva asignaturas\n"
+                    + "2. Consultar lista de asignaturas registradas\n"
+                    + "3. Buscar asignatura por codigo\n"
+                    + "4. Modificar datos de una asignatura\n"
+                    + "5. Eliminar asignatura\n"
+                    + "6. Volver a menú principal\n"
+                    + "Elija su opción..."));
+
+            switch (op) {
+                case 1:   registrarAsignatura();
+                    break;
+                case 2:   listarAsignaturas();
+                    break;
+                case 3:   buscarAsignatura();
+                    break;
+                case 4:   actualizarAsignatura();
+                    break;
+                case 5:   eliminarAsignatura();
+                    break;
+                case 6:
+                    JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción fuera de rango...");
+            }
+
+        } while (op != 6);
+
+    }
+
+    public void menuNotas() {
+        int op;
+
+        do {
+            op = Integer.parseInt(JOptionPane.showInputDialog(
+                    "====== GESTIÓN NOTAS ======\n"
+                    + "1. Registrar nueva nota\n"
+                    + "2. Consultar lista de notas registradas\n"
+                    + "3. Buscar nota por codigo de estudiante\n"
+                    + "4. Modificar datos de una asignatura\n"
+                    + "5. Eliminar asignatura\n"
+                    + "6. Volver a menú principal\n"
+                    + "Elija su opción..."));
+
+            switch (op) {
+                case 1:   registrarNota();
+                    break;
+                case 2:   listarNota();
+                    break;
+                case 3:   buscarNota();
+                    break;
+                case 4:   actualizarNota();
+                    break;
+                case 5:   eliminarNota();
+                    break;
+                case 6:
+                    JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción fuera de rango...");
+            }
+
+        } while (op != 6);
+
+    }
 
 }
 
@@ -586,12 +943,23 @@ class Estudiante {
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "Codigo: " + codigo
                 + ", Nombre: " + nombre
                 + ", Apellido: " + apellido
                 + ", Programa: " + programa
                 + ", Semestre: " + semestre
                 + ", Edad: " + edad;
+=======
+        return  "-------------------------\n" 
+                + "Codigo: " + codigo + "\n"
+                + "Nombre: " + nombre+ "\n"
+                + "Apellido: " + apellido+ "\n"
+                + "Programa: " + programa+ "\n"
+                + "Semestre: " + semestre+ "\n"
+                + "Edad: " + edad+ "\n"
+                + "-------------------------";
+>>>>>>> feature/menu-principal
     }
 }
 
@@ -658,8 +1026,11 @@ class asignatura {
 
 class Nota {
 
+<<<<<<< HEAD
     private Estudiante estudiante;
     private asignatura Asignatura;
+=======
+>>>>>>> feature/menu-principal
     private double Nota1;
     private double Nota2;
     private double Nota3;
