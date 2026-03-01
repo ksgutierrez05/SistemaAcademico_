@@ -59,7 +59,7 @@ public class Main {
                         "Los creditos deben estar entre 1 y 171");
             } else {
 
-                for (Asignatura e : listaasig) {
+                for (asignatura e : listaasig) {
                      if (e.getCodigo().equalsIgnoreCase(codigo)) {
                         JOptionPane.showMessageDialog(null,
                         "Ya existe una asignatura con ese codigo");
@@ -94,7 +94,7 @@ public void listarAsignaturas() {
   
     StringBuilder texto = new StringBuilder();
 
-        for (Asignatura e : listaAsig) {
+        for (asignatura e : listaasig) {
             texto.append("Codigo: ").append(e.getCodigo())
          .append("\nNombre: ").append(e.getNombre())
          .append("\nCreditos: ").append(e.getCreditos())
