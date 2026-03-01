@@ -91,8 +91,11 @@ public class Main {
 
 public void listarAsignaturas() {
 
-   JOptionPane.showMessageDialog(null,
-                "No hay estudiantes registrados");
+   if (listaasig.isEmpty()) {  
+            JOptionPane.showMessageDialog(null,
+                "No hay asignaturas registrados");
+        return; 
+    }
     StringBuilder texto = new StringBuilder();
 
         for (asignatura e : listaasig) {
