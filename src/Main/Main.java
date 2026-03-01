@@ -439,12 +439,14 @@ class Estudiante {
 
     @Override
     public String toString() {
-        return "Codigo: " + codigo
-                + ", Nombre: " + nombre
-                + ", Apellido: " + apellido
-                + ", Programa: " + programa
-                + ", Semestre: " + semestre
-                + ", Edad: " + edad;
+        return  "-------------------------\n" 
+                + "Codigo: " + codigo + "\n"
+                + "Nombre: " + nombre+ "\n"
+                + "Apellido: " + apellido+ "\n"
+                + "Programa: " + programa+ "\n"
+                + "Semestre: " + semestre+ "\n"
+                + "Edad: " + edad+ "\n"
+                + "-------------------------";
     }
 }
 
