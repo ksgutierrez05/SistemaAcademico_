@@ -18,6 +18,7 @@ public class Main {
     ArrayList<Nota> listanota = new ArrayList<>();
 
     //OPCIONES DE MENU NOTA
+    //regsitrar nota
     public void registrarnota() {
         int seleccion;
         if (listaest.isEmpty()) {
@@ -120,6 +121,7 @@ public class Main {
             }
         } while (seleccion == JOptionPane.YES_OPTION);
     }
+    //listarnota
 
     public void listarNotas() {
         if (listanota.isEmpty()) {
@@ -165,13 +167,14 @@ public class Main {
 
             }
             if (!encontrado) {
-            JOptionPane.showMessageDialog(null,
-                    "notas  no encontrada");
-        }
+                JOptionPane.showMessageDialog(null,
+                        "notas  no encontrada");
+            }
 
         }
 
     }
+//actualizarnotas
 
     public void ActualizarNota() {
         if (listanota.isEmpty()) {
@@ -234,6 +237,7 @@ public class Main {
                 "Nota no encontrada.");
 
     }
+//eliminar notas
 
     public void EliminarNota() {
         if (listanota.isEmpty()) {
@@ -414,7 +418,12 @@ class asignatura {
 
     @Override
     public String toString() {
-        return "asignatura{" + "codigo=" + codigo + ", nombre=" + nombre + ", creditos=" + creditos + ", docente=" + docente + '}';
+        return "----- ASIGNATURA -----\n"
+                + "Código: " + codigo + "\n"
+                + "Nombre: " + nombre + "\n"
+                + "Créditos: " + creditos + "\n"
+                + "Docente: " + docente + "\n"
+                + "-------------------------";
     }
 
 }
@@ -505,15 +514,15 @@ class Nota {
 
     @Override
     public String toString() {
-        return "Nota{" + "estudiante=" + estudiante
-                + ", Asignatura=" + Asignatura
-                + ", Nota1=" + Nota1
-                + ", Nota2=" + Nota2
-                + ", Nota3=" + Nota3
-                + ", periodo=" + periodo
-                + ", promedio=" + promedio + '}';
+        return "----- NOTA -----\n"
+                + "Estudiante: " + estudiante + "\n"
+                + "Asignatura: " + Asignatura + "\n"
+                + "Nota 1: " + Nota1 + "\n"
+                + "Nota 2: " + Nota2 + "\n"
+                + "Nota 3: " + Nota3 + "\n"
+                + "Periodo: " + periodo + "\n"
+                + "Promedio: " + promedio + "\n"
+                + "--------------------";
     }
-
-}
 
 }
