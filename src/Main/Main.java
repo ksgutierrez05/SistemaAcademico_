@@ -152,6 +152,70 @@ public class Main {
         }
 
     }
+    public void ActualizarNota(){
+         if (listanota.isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "No hay notas registradas.");
+            return;
+        }
+         
+    String codEst = JOptionPane.showInputDialog(
+            "Ingrese el código del estudiante:");
+
+    String codAsig = JOptionPane.showInputDialog(
+            "Ingrese el código de la asignatura:");
+
+    String periodo = JOptionPane.showInputDialog(
+            "Ingrese el periodo:");
+
+    for (Nota n : listanota) {
+
+        if (n.getEstudiante().getCodigo().equalsIgnoreCase(codEst)
+                && n.getAsignatura().getCodigo().equalsIgnoreCase(codAsig)
+                && n.getPeriodo().equalsIgnoreCase(periodo)) {
+
+            JOptionPane.showMessageDialog(null,
+                    "Nota encontrada:\n" + n.toString());
+
+            double n1, n2, n3;
+
+            try {
+
+                n1 = Double.parseDouble(
+                        JOptionPane.showInputDialog("Nueva Nota 1:", n.getNota1()));
+
+                n2 = Double.parseDouble(
+                        JOptionPane.showInputDialog("Nueva Nota 2:", n.getNota2()));
+
+                n3 = Double.parseDouble(
+                        JOptionPane.showInputDialog("Nueva Nota 3:", n.getNota3()));
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null,
+                        "Debe ingresar valores numéricos válidos.");
+                return;
+            }
+
+            n.setNota1(n1);
+            n.setNota2(n2);
+            n.setNota3(n3);
+            n.calcularpromedio();
+
+            JOptionPane.showMessageDialog(null,
+                    "Nota actualizada correctamente.\nNuevo promedio: "
+                            + n.getPromedio());
+
+            return;
+        }
+    }
+
+    JOptionPane.showMessageDialog(null,
+            "Nota no encontrada.");
+        
+    
+}
+    
+    
 
     class Estudiante {
 
