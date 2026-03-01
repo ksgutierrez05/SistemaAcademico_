@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
 public class Main {
 
     ArrayList<Estudiante> listaest = new ArrayList<>();
-<<<<<<< HEAD
     ArrayList<asignatura> listaasig = new ArrayList<>();
     ArrayList<Nota> listanota = new ArrayList<>();
 
@@ -516,10 +515,7 @@ public void actualizarAsignatura() {
 
     } while (seleccion == JOptionPane.YES_OPTION);
 }
-=======
-    ArrayList<Object> listaasig = new ArrayList<>();
-    ArrayList<Object> listanota = new ArrayList<>();
->>>>>>> feature/menu-principal
+
 
     public static void main(String[] args) {
 
@@ -854,7 +850,7 @@ public void actualizarAsignatura() {
             switch (op) {
                 case 1:   registrarNota();
                     break;
-                case 2:   listarNota();
+                case 2:   listarNotas();
                     break;
                 case 3:   buscarNota();
                     break;
@@ -943,14 +939,7 @@ class Estudiante {
 
     @Override
     public String toString() {
-<<<<<<< HEAD
-        return "Codigo: " + codigo
-                + ", Nombre: " + nombre
-                + ", Apellido: " + apellido
-                + ", Programa: " + programa
-                + ", Semestre: " + semestre
-                + ", Edad: " + edad;
-=======
+
         return  "-------------------------\n" 
                 + "Codigo: " + codigo + "\n"
                 + "Nombre: " + nombre+ "\n"
@@ -959,7 +948,6 @@ class Estudiante {
                 + "Semestre: " + semestre+ "\n"
                 + "Edad: " + edad+ "\n"
                 + "-------------------------";
->>>>>>> feature/menu-principal
     }
 }
 
@@ -1026,11 +1014,8 @@ class asignatura {
 
 class Nota {
 
-<<<<<<< HEAD
     private Estudiante estudiante;
     private asignatura Asignatura;
-=======
->>>>>>> feature/menu-principal
     private double Nota1;
     private double Nota2;
     private double Nota3;
