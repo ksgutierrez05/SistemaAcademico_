@@ -129,7 +129,68 @@ public void buscarAsignatura() {
             "No existe una asignatura con ese codigo");
 }
 
+public void actualizarAsignatura() {
 
+    String codigoActualizar, nuevoNombre, nuevoDocente, inputCreditos;
+    int nuevosCreditos, seleccion;
+
+    do {
+        try {
+
+            codigoActualizar = JOptionPane.showInputDialog("Ingrese el codigo de la asignatura a actualizar:");
+
+            for (asignatura e : listaasig) {
+
+                if (e.getCodigo().equalsIgnoreCase(codigoActualizar)) {
+
+                    nuevoNombre = JOptionPane.showInputDialog("Ingrese el nuevo nombre:");
+                    inputCreditos = JOptionPane.showInputDialog("Ingrese los nuevos creditos:");
+                    nuevoDocente = JOptionPane.showInputDialog("Ingrese el nuevo docente:");
+
+                    nuevosCreditos = Integer.parseInt(inputCreditos);
+
+                    if (nuevosCreditos <= 0 || nuevosCreditos > 171) {
+                        JOptionPane.showMessageDialog(null,
+                                "Los creditos deben estar entre 1 y 171");
+                    } else {
+
+                        e.setNombre(nuevoNombre);
+                        e.setCreditos(nuevosCreditos);
+                        e.setDocente(nuevoDocente);
+
+                        JOptionPane.showMessageDialog(null, "Asignatura actualizada");
+                    }
+
+                    seleccion = JOptionPane.showConfirmDialog(null,
+                            "¿DESEA SEGUIR ACTUALIZANDO?",
+                            "CONFIRMAR",
+                            JOptionPane.YES_NO_OPTION);
+
+                    if (seleccion == JOptionPane.YES_OPTION) {
+                        actualizarAsignatura();
+                    }
+
+                    return;
+                }
+            }
+
+            JOptionPane.showMessageDialog(null,
+                    "No existe una asignatura con ese codigo");
+
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(null,
+                    "Error: Debe ingresar un numero valido en creditos",
+                    "ERROR",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+        seleccion = JOptionPane.showConfirmDialog(null,
+                "¿DESEA SEGUIR ACTUALIZANDO?",
+                "CONFIRMAR",
+                JOptionPane.YES_NO_OPTION);
+
+    } while (seleccion == JOptionPane.YES_OPTION);
 }
 
 
