@@ -13,15 +13,16 @@ import javax.swing.JOptionPane;
  */
 public class Main {
 
-    ArrayList<Object> listaest = new ArrayList<>();
+    ArrayList<Estudiante> listaest = new ArrayList<>();
     ArrayList<Object> listaasig = new ArrayList<>();
     ArrayList<Object> listanota = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
+
         mostrarMenu();
     }
 
-    private static void mostrarMenu() {
+    private void mostrarMenu() {
         int op;
 
         do {
@@ -54,7 +55,7 @@ public class Main {
 
     }
 
-    public static void menuEstudiantes() {
+    public void menuEstudiantes() {
         int op;
 
         do {
@@ -69,15 +70,20 @@ public class Main {
                     + "Elija su opción..."));
 
             switch (op) {
-                case 1:   //registrarEstudiante();
+                case 1:
+                    registrarEstudiante();
                     break;
-                case 2:   //listarEstudiantes();
+                case 2:
+                    //listarEstudiantes();
                     break;
-                case 3:   //buscarEstudiante();
+                case 3:
+                    //buscarEstudiante();
                     break;
-                case 4:   //actualizarEstudiante();
+                case 4:
+                    //actualizarEstudiante();
                     break;
-                case 5:   //eliminarEstudiante();
+                case 5:
+                    //eliminarEstudiante();
                     break;
                 case 6:
                     JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
@@ -90,7 +96,56 @@ public class Main {
 
     }
 
-    public static void menuAsignaturas() {
+    //OPCIONES DE MENU ESTUDIANTE
+    public void registrarEstudiante() {
+        String cod, ape, nom, prog;
+        int seleccion, sem, edad;
+        do {
+            try {
+                do {
+
+                    cod = JOptionPane.showInputDialog("Ingrese el código del estudiante: ");
+                    nom = JOptionPane.showInputDialog("Ingrese el nombre: ");
+                    ape = JOptionPane.showInputDialog("Ingrese el apellido: ");
+                    prog = JOptionPane.showInputDialog("Ingrese el programa: ");
+
+                    if (cod == null || cod.trim().isEmpty()
+                            || nom == null || nom.trim().isEmpty()
+                            || ape == null || ape.trim().isEmpty()
+                            || prog == null || prog.trim().isEmpty()) {
+
+                        JOptionPane.showMessageDialog(null,
+                                "Todos los campos son obligatorios");
+
+                    }
+                } while (cod == null || cod.trim().isEmpty()
+                        || nom == null || nom.trim().isEmpty()
+                        || ape == null || ape.trim().isEmpty()
+                        || prog == null || prog.trim().isEmpty());
+
+                sem = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el semestre cursado: "));
+                edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad actual: "));
+                Estudiante estu = new Estudiante(cod, nom, ape, prog, sem, edad);
+                listaest.add(estu);
+                JOptionPane.showMessageDialog(null, "Estudiante agregado");
+            } catch (NumberFormatException e) {
+
+                JOptionPane.showMessageDialog(null,
+                        "Error: Debe ingresar valores numéricos válidos en semestre o edad",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+            seleccion = JOptionPane.showConfirmDialog(null,
+                    "¿Desea seguir agregando?",
+                    "Confirmacion",
+                    JOptionPane.YES_NO_OPTION);
+
+        } while (seleccion == JOptionPane.YES_OPTION);
+    }
+
+
+    public void menuAsignaturas() {
         int op;
 
         do {
@@ -126,7 +181,7 @@ public class Main {
 
     }
 
-    public static void menuNotas() {
+    public void menuNotas() {
         int op;
 
         do {
@@ -232,15 +287,17 @@ class Estudiante {
 
     @Override
     public String toString() {
-        return "Codigo: " + codigo +
-               ", Nombre: " + nombre +
-               ", Apellido: " + apellido +
-               ", Programa: " + programa +
-               ", Semestre: " + semestre +
-               ", Edad: " + edad;
+        return "Codigo: " + codigo
+                + ", Nombre: " + nombre
+                + ", Apellido: " + apellido
+                + ", Programa: " + programa
+                + ", Semestre: " + semestre
+                + ", Edad: " + edad;
     }
 }
-class asignatura{
+
+class asignatura {
+
     private String codigo;
     private String nombre;
     private int creditos;
@@ -292,18 +349,17 @@ class asignatura{
     public String toString() {
         return "asignatura{" + "codigo=" + codigo + ", nombre=" + nombre + ", creditos=" + creditos + ", docente=" + docente + '}';
     }
-    
 
-    
 }
 
-class Nota{
-     private double Nota1;
+class Nota {
+
+    private double Nota1;
     private double Nota2;
     private double Nota3;
     private String periodo;
     private double promedio;
-    
+
     public void calcularpromedio() {
         promedio = (double) (Nota1 * 0.3 + Nota2 * 0.3 + Nota3 * 0.4);
 
@@ -364,5 +420,5 @@ class Nota{
     public String toString() {
         return "Nota{" + "Nota1=" + Nota1 + ", Nota2=" + Nota2 + ", Nota3=" + Nota3 + ", periodo=" + periodo + ", promedio=" + promedio + '}';
     }
-    
+
 }
