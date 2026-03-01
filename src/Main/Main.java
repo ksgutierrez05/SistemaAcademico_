@@ -18,65 +18,74 @@ public class Main {
     ArrayList<Object> listaasig = new ArrayList<>();
     ArrayList<Object> listanota = new ArrayList<>();
 
-    public void registrarAsignatura() {
+   public void registrarAsignatura() {
 
-    String codigo;
-    String nombre;
-    String docente;
-    String inputCreditos;
-    int creditos = 0;
+    String codigo, nombre, docente, inputCreditos;
+    int creditos, seleccion;
 
     do {
+        try {
 
-        codigo = JOptionPane.showInputDialog("Ingrese el codigo de la asignatura:");
-        nombre = JOptionPane.showInputDialog("Ingrese el nombre de la asignatura:");
-        inputCreditos = JOptionPane.showInputDialog("Ingrese los creditos:");
-        docente = JOptionPane.showInputDialog("Ingrese el nombre del docente:");
+            do {
 
-        if (codigo == null || codigo.trim().isEmpty()
-                || nombre == null || nombre.trim().isEmpty()
-                || inputCreditos == null || inputCreditos.trim().isEmpty()
-                || docente == null || docente.trim().isEmpty()) {
+                codigo = JOptionPane.showInputDialog("Ingrese el codigo de la asignatura:  ");
+                nombre = JOptionPane.showInputDialog("Ingrese el nombre:  ");
+                inputCreditos = JOptionPane.showInputDialog("Ingrese los creditos:  ");
+                docente = JOptionPane.showInputDialog("Ingrese el docente:  ");
 
-            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
-        }
+                if (codigo == null || codigo.trim().isEmpty()
+                        || nombre == null || nombre.trim().isEmpty()
+                        || inputCreditos == null || inputCreditos.trim().isEmpty()
+                        || docente == null || docente.trim().isEmpty()) {
 
-    } while (codigo == null || codigo.trim().isEmpty()
-            || nombre == null || nombre.trim().isEmpty()
-            || inputCreditos == null || inputCreditos.trim().isEmpty()
-            || docente == null || docente.trim().isEmpty());
+                    JOptionPane.showMessageDialog(null,
+                            "Todos los campos son obligatorios");
 
-    codigo = codigo.trim();
-    nombre = nombre.trim();
-    docente = docente.trim();
+                }
 
-    try {
-        creditos = Integer.parseInt(inputCreditos);
+            } while (codigo == null || codigo.trim().isEmpty()
+                    || nombre == null || nombre.trim().isEmpty()
+                    || inputCreditos == null || inputCreditos.trim().isEmpty()
+                    || docente == null || docente.trim().isEmpty());
 
-        if (creditos <= 0 || creditos > 10) {
-            JOptionPane.showMessageDialog(null, "Los creditos deben estar entre 1 y 10");
-            return;
-        }
+            creditos = Integer.parseInt(inputCreditos);
 
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Los creditos deben ser numericos");
-        return;
+            if (creditos <= 0 || creditos > 171) {
+                JOptionPane.showMessageDialog(null,
+                        "Los creditos deben estar entre 1 y 171");
+            } else {
+
+                for (Asignatura e : listaasig) {
+                     if (e.getCodigo().equalsIgnoreCase(codigo)) {
+                        JOptionPane.showMessageDialog(null,
+                        "Ya existe una asignatura con ese codigo");
+                        return;
     }
-
-    for (Object obj : listaasig) {
-        asignatura a = (asignatura) obj;
-
-        if (a.getCodigo().equalsIgnoreCase(codigo)) {
-            JOptionPane.showMessageDialog(null, "Ya existe una asignatura con ese codigo");
-            return;
-        }
-    }
-
-    asignatura nueva = new asignatura(codigo, nombre, creditos, docente);
-    listaasig.add(nueva);
-
-    JOptionPane.showMessageDialog(null, "Asignatura registrada correctamente");
 }
+
+                asignatura nueva = new asignatura(codigo, nombre, creditos, docente);
+                listaasig.add(nueva);
+
+                JOptionPane.showMessageDialog(null, "Asignatura agregada");
+            }
+
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(null,
+                    "Error: Debe ingresar un numero valido en creditos",
+                    "ERROR",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+        seleccion = JOptionPane.showConfirmDialog(null,
+                "¿DESEA SEGUIR AGREGANDO?",
+                "CONFIRMAR",
+                JOptionPane.YES_NO_OPTION);
+
+    } while (seleccion == JOptionPane.YES_OPTION);
+}
+
+asi estaria bien? basicmaente copi tu estructura
 }
 
 class Estudiante {
