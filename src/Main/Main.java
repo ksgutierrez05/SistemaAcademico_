@@ -85,7 +85,7 @@ public class Main {
     } while (seleccion == JOptionPane.YES_OPTION);
 }
 
-asi estaria bien? basicmaente copi tu estructura
+
 }
 
 class Estudiante {
