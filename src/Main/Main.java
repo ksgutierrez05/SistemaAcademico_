@@ -17,7 +17,9 @@ public class Main {
     ArrayList<asignatura> listaasig = new ArrayList<>();
     ArrayList<Nota> listanota = new ArrayList<>();
 
+    //OPCIONES DE MENU NOTA
     public void registrarnota() {
+        int seleccion;
         if (listaest.isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "No hay estudiantes registrados.");
@@ -29,78 +31,94 @@ public class Main {
                     "No hay asignaturas registradas.");
             return;
         }
-
-        String codEst = JOptionPane.showInputDialog("Ingrese código del estudiante:");
-        if (codEst == null || codEst.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El código no puede estar vacío.");
-            return;
-        }
-
-        String codAsig = JOptionPane.showInputDialog("Ingrese código de la asignatura:");
-        if (codAsig == null || codAsig.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El código no puede estar vacío.");
-            return;
-        }
-        String periodo = JOptionPane.showInputDialog("ingrese el periodo");
-        if (periodo == null || periodo.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El periodo no puede estar vacío.");
-            return;
-        }
-        double Nota1, Nota2, Nota3;
-        try {
-            Nota1 = Double.parseDouble(JOptionPane.showInputDialog("ingrese nota 1"));
-            Nota2 = Double.parseDouble(JOptionPane.showInputDialog("ingrese nota 2"));
-            Nota3 = Double.parseDouble(JOptionPane.showInputDialog("ingrese nota 3"));
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null,
-                    "Debe ingresar valores numéricos válidos.");
-            return;
-
-        }
-
-        Estudiante estudianteEncontrado = null;
-        for (Estudiante e : listaest) {
-            if (e.getCodigo().equals(codEst)) {
-                estudianteEncontrado = e;
-                break;
-            }
-
-        }
-        asignatura asignaturaencon = null;
-        for (asignatura a : listaasig) {
-            if (a.getCodigo().equals(codAsig)) {
-                asignaturaencon = a;
-
-            }
-
-        }
-        if (estudianteEncontrado == null || asignaturaencon == null) {
-            JOptionPane.showMessageDialog(null, "Estudiante o asignatura no encontrados");
-            return;
-        }
-        for (Nota n : listanota) {
-            if (n.getEstudiante().getCodigo().equalsIgnoreCase(codEst)
-                    && n.getAsignatura().getCodigo().equalsIgnoreCase(codAsig)
-                    && n.getPeriodo().equalsIgnoreCase(periodo)) {
-
-                JOptionPane.showMessageDialog(null,
-                        "Ya existe una nota registrada para ese estudiante, asignatura y periodo.");
+        do {
+            String codEst = JOptionPane.showInputDialog("Ingrese código del estudiante:");
+            if (codEst == null || codEst.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "El código no puede estar vacío.");
                 return;
             }
-        }
-        Nota nueva = new Nota();
-        nueva.setEstudiante(estudianteEncontrado);
-        nueva.setAsignatura(asignaturaencon);
-        nueva.setNota1(Nota1);
-        nueva.setNota2(Nota2);
-        nueva.setNota3(Nota3);
-        nueva.setPeriodo(periodo);
-        nueva.calcularpromedio();
 
-        listanota.add(nueva);
+            String codAsig = JOptionPane.showInputDialog("Ingrese código de la asignatura:");
+            if (codAsig == null || codAsig.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "El código no puede estar vacío.");
+                return;
+            }
+            String periodo = JOptionPane.showInputDialog("ingrese el periodo");
+            if (periodo == null || periodo.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "El periodo no puede estar vacío.");
+                return;
+            }
+            double Nota1, Nota2, Nota3;
+            try {
+                Nota1 = Double.parseDouble(JOptionPane.showInputDialog("ingrese nota 1"));
+                Nota2 = Double.parseDouble(JOptionPane.showInputDialog("ingrese nota 2"));
+                Nota3 = Double.parseDouble(JOptionPane.showInputDialog("ingrese nota 3"));
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null,
+                        "Debe ingresar valores numéricos válidos.");
+                return;
 
-        JOptionPane.showMessageDialog(null, "Nota registrada correctamente");
+            }
 
+            Estudiante estudianteEncontrado = null;
+            for (Estudiante e : listaest) {
+                if (e.getCodigo().equals(codEst)) {
+                    estudianteEncontrado = e;
+                    break;
+                }
+
+            }
+            asignatura asignaturaencon = null;
+            for (asignatura a : listaasig) {
+                if (a.getCodigo().equals(codAsig)) {
+                    asignaturaencon = a;
+                    break;
+
+                }
+
+            }
+
+            if (estudianteEncontrado == null || asignaturaencon == null) {
+                JOptionPane.showMessageDialog(null, "Estudiante o asignatura no encontrados");
+                return;
+            } else {
+                boolean existe = false;
+
+                for (Nota n : listanota) {
+                    if (n.getEstudiante().getCodigo().equalsIgnoreCase(codEst)
+                            && n.getAsignatura().getCodigo().equalsIgnoreCase(codAsig)
+                            && n.getPeriodo().equalsIgnoreCase(periodo)) {
+                        existe = true;
+
+                        break;
+                    }
+                }
+                if (existe) {
+
+                    JOptionPane.showMessageDialog(null,
+                            "Ya existe una nota registrada para ese estudiante, asignatura y periodo.");
+
+                } else {
+                    Nota nueva = new Nota();
+                    nueva.setEstudiante(estudianteEncontrado);
+                    nueva.setAsignatura(asignaturaencon);
+                    nueva.setNota1(Nota1);
+                    nueva.setNota2(Nota2);
+                    nueva.setNota3(Nota3);
+                    nueva.setPeriodo(periodo);
+                    nueva.calcularpromedio();
+
+                    listanota.add(nueva);
+
+                    JOptionPane.showMessageDialog(null, "Nota registrada correctamente");
+                }
+
+                seleccion = JOptionPane.showConfirmDialog(null,
+                        "¿Desea seguir agregando?",
+                        "Confirmación",
+                        JOptionPane.YES_NO_OPTION);
+            }
+        } while (seleccion == JOptionPane.YES_OPTION);
     }
 
     public void listarNotas() {
@@ -146,6 +164,10 @@ public class Main {
                 }
 
             }
+            if (!encontrado) {
+            JOptionPane.showMessageDialog(null,
+                    "notas  no encontrada");
+        }
 
         }
 
