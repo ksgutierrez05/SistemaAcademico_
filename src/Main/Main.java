@@ -91,7 +91,8 @@ public class Main {
 
 public void listarAsignaturas() {
 
-  
+   JOptionPane.showMessageDialog(null,
+                "No hay estudiantes registrados");
     StringBuilder texto = new StringBuilder();
 
         for (asignatura e : listaasig) {
@@ -127,6 +128,11 @@ public void buscarAsignatura() {
     JOptionPane.showMessageDialog(null,
             "No existe una asignatura con ese codigo");
 }
+
+
+}
+
+
 }
 
 class Estudiante {
